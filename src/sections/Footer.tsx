@@ -55,7 +55,6 @@ export function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-bold">CLIMVAR</span>
-                <span className="text-xs text-slate-400 -mt-1">Laboratório de Climatologia</span>
               </div>
             </a>
             <p className="text-slate-400 leading-relaxed mb-6 max-w-sm">
