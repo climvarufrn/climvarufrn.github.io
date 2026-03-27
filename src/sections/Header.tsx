@@ -64,11 +64,6 @@ export function Header() {
               }`}>
                 CLIMVAR
               </span>
-              <span className={`text-[10px] lg:text-xs -mt-1 transition-colors duration-300 ${
-                isScrolled ? 'text-blue-600/70' : 'text-white/70'
-              }`}>
-                Laboratório de Climatologia
-              </span>
             </div>
           </a>
 
