@@ -3,12 +3,12 @@ import { Mail, GraduationCap, Award, Linkedin } from 'lucide-react';
 
 const teamMembers = [
   {
-    name: 'Dr. Carlos Eduardo Silva',
+    name: 'Dr. Cristiano Prestrelo de Oiveira',
     role: 'Coordenador do Laboratório',
-    image: '/team-1.jpg',
-    bio: 'Doutor em Meteorologia pela USP com 25 anos de experiência em variabilidade climática. Líder de diversos projetos de pesquisa em colaboração com instituições internacionais.',
-    lattes: 'http://lattes.cnpq.br/',
-    email: 'carlos.silva@climvar.br',
+    image: '/coordenador.jpg',
+    bio: 'Doutor em Meteorologia pela USP desde 2014 com experiência em variabilidade climática. Líder de diversos projetos de pesquisa em colaboração com instituições nacionais e internacionais.',
+    lattes: 'http://lattes.cnpq.br/2461244145338043',
+    email: 'cristiano.prestrelo@ufrn.br',
   },
   {
     name: 'Dra. Ana Paula Mendonça',

@@ -1,6 +1,6 @@
 #!/bin/bash
 ##############################################################################
-# Este script sobre automaticamente as alterações do site                  ###
+# Este script sobe automaticamente as alterações do site                   ###
 # novo membro da equipe por exemplo.                                       ###
 # O script não está pronto. Pois é preciso ter uma adição de informação    ###
 # na mensagem (msg).                                                       ###
