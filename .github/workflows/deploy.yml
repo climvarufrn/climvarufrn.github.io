@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: app   # 🔥 AQUI ESTÁ A CHAVE
+        working-directory: .   # 🔥 AQUI ESTÁ A CHAVE
 
     steps:
       - name: Checkout
@@ -51,7 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: app/dist   # 🔥 IMPORTANTE
+          path: dist   # 🔥 IMPORTANTE
 
       - name: Deploy
         uses: actions/deploy-pages@v4
