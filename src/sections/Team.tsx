@@ -13,7 +13,7 @@ const teamMembers = [
   {
     name: 'Dra. Ana Paula Mendonça',
     role: 'Pesquisadora Sênior',
-    image: '/team/team-2.jpg',
+    image: '/team-2.jpg',
     bio: 'Especialista em mudanças climáticas e modelagem numérica. Coordena projetos de projeção climática para a América do Sul e avaliação de impactos.',
     lattes: 'http://lattes.cnpq.br/',
     email: 'ana.mendonca@climvar.br',
