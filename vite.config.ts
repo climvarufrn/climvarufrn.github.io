@@ -3,10 +3,7 @@ import path from "path"
 
 export default defineConfig({
   base: "/",
-  publicDir: "public", // 🔥 garante que Vite use essa pasta
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+  build: {
+    assetsDir: "assets_v2", // 🔥 muda nome da pasta
   },
 })
