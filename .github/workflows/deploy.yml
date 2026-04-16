@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: .
+        working-directory: app   # 🔥 AQUI ESTÁ A CHAVE
 
     steps:
       - name: Checkout
@@ -32,10 +32,10 @@ jobs:
 
       - name: Debug structure 🔍
         run: |
-          echo "Estrutura do projeto:"
+          echo "PWD:"
+          pwd
+          echo "Arquivos:"
           ls -R
-          echo "Conteúdo do public:"
-          ls -R public || echo "public não encontrado"
 
       - name: Build
         run: npm run build
@@ -51,7 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: app/dist   # 🔥 IMPORTANTE
 
       - name: Deploy
         uses: actions/deploy-pages@v4
