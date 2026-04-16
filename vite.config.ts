@@ -2,7 +2,8 @@ import { defineConfig } from "vite"
 import path from "path"
 
 export default defineConfig({
-  base: "/", // correto para user site
+  base: "/",
+  publicDir: "public", // 🔥 garante que Vite use essa pasta
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
