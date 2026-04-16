@@ -5,7 +5,7 @@ const teamMembers = [
   {
     name: 'Dr. Cristiano Prestrelo de Oiveira',
     role: 'Coordenador do Laboratório',
-    image: '/public/team/coordenador.jpg?' + Date.now(),
+    image: '/team/coordenador.jpg',
     bio: 'Doutor em Meteorologia pela USP desde 2014 com experiência em variabilidade climática. Líder de diversos projetos de pesquisa em colaboração com instituições nacionais e internacionais.',
     lattes: 'http://lattes.cnpq.br/2461244145338043',
     email: 'cristiano.prestrelo@ufrn.br',
@@ -13,7 +13,7 @@ const teamMembers = [
   {
     name: 'Dra. Ana Paula Mendonça',
     role: 'Pesquisadora Sênior',
-    image: '/public/team-2.jpg',
+    image: '/team/team-2.jpg',
     bio: 'Especialista em mudanças climáticas e modelagem numérica. Coordena projetos de projeção climática para a América do Sul e avaliação de impactos.',
     lattes: 'http://lattes.cnpq.br/',
     email: 'ana.mendonca@climvar.br',
@@ -21,7 +21,7 @@ const teamMembers = [
   {
     name: 'Dr. Ricardo Oliveira',
     role: 'Pesquisador',
-    image: '/public/team/team-3.jpg',
+    image: '/team/team-3.jpg',
     bio: 'Focado em interação oceano-atmosfera e variabilidade decadal do clima. Desenvolve metodologias para previsão climática sazonal.',
     lattes: 'http://lattes.cnpq.br/',
     email: 'ricardo.oliveira@climvar.br',
@@ -29,7 +29,7 @@ const teamMembers = [
   {
     name: 'Dra. Juliana Costa',
     role: 'Pesquisadora',
-    image: '/public/team/team-4.jpg',
+    image: '/team/team-4.jpg',
     bio: 'Especialista em eventos climáticos extremos e análise de tendências. Trabalha com índices de extremos climáticos e seus impactos socioeconômicos.',
     lattes: 'http://lattes.cnpq.br/',
     email: 'juliana.costa@climvar.br',
