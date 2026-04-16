@@ -5,7 +5,7 @@ const teamMembers = [
   {
     name: 'Dr. Cristiano Prestrelo de Oiveira',
     role: 'Coordenador do Laboratório',
-    image: '/team/coordenador.jpg',
+    image: '/team/coordenador.jpg?' + Date.now(),
     bio: 'Doutor em Meteorologia pela USP desde 2014 com experiência em variabilidade climática. Líder de diversos projetos de pesquisa em colaboração com instituições nacionais e internacionais.',
     lattes: 'http://lattes.cnpq.br/2461244145338043',
     email: 'cristiano.prestrelo@ufrn.br',
