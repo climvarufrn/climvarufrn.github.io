@@ -11,12 +11,12 @@ const teamMembers = [
     email: 'cristiano.prestrelo@ufrn.br',
   },
   {
-    name: 'Dra. Ana Paula Mendonça',
-    role: 'Pesquisadora Sênior',
-    image: '/team/team-2.jpg',
-    bio: 'Especialista em mudanças climáticas e modelagem numérica. Coordena projetos de projeção climática para a América do Sul e avaliação de impactos.',
-    lattes: 'http://lattes.cnpq.br/',
-    email: 'ana.mendonca@climvar.br',
+    name: 'Rayane Ferreira',
+    role: 'Graduanda em Meteorologia',
+    image: '/team/graduacao-01.jpg',
+    bio: 'Graduanda em Meteorologia pela UFRN. Atua na área de Geociências, com ênfase em Meteorologia, possui competências em Climatologia. Com conhecimentos em análise e processamento de dados, nas linguagens de programação Python e R',
+    lattes: 'http://lattes.cnpq.br/0117543397640729',
+    email: 'rayane.ferreira.130@ufrn.edu.br',
   },
   {
     name: 'Dr. Ricardo Oliveira',
