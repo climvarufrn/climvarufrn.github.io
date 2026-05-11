@@ -19,12 +19,12 @@ const teamMembers = [
     email: 'rayane.ferreira.130@ufrn.edu.br',
   },
   {
-    name: 'Dr. Ricardo Oliveira',
-    role: 'Pesquisador',
-    image: '/team/team-3.jpg',
-    bio: 'Focado em interação oceano-atmosfera e variabilidade decadal do clima. Desenvolve metodologias para previsão climática sazonal.',
-    lattes: 'http://lattes.cnpq.br/',
-    email: 'ricardo.oliveira@climvar.br',
+    name: 'Luiz Eduardo Nunes Cho-Luck',
+    role: 'Doutorando em Meteorologia',
+    image: '/team/doutorando-01.jpg',
+    bio: 'Meteorologista e Mestre em Ciências Climáticas pela UFRN. Possui experiência em previsão do tempo, modelagem climática, sensoriamento remoto, geoprocessamento e análise de dados.',
+    lattes: 'http://lattes.cnpq.br/2652719958867337',
+    email: 'choluck.eduardo@gmail.com',
   },
   {
     name: 'Dra. Juliana Costa',
