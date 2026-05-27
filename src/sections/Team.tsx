@@ -11,12 +11,20 @@ const teamMembers = [
     email: 'cristiano.prestrelo@ufrn.br',
   },
   {
-    name: 'Rayane Ferreira',
-    role: 'Graduanda em Meteorologia',
-    image: '/team/graduacao-01.jpg',
-    bio: 'Graduanda em Meteorologia pela UFRN. Atua na área de Geociências, com ênfase em Meteorologia, possui competências em Climatologia. Com conhecimentos em análise e processamento de dados, nas linguagens de programação Python e R',
-    lattes: 'http://lattes.cnpq.br/0117543397640729',
-    email: 'rayane.ferreira.130@ufrn.edu.br',
+    name: 'Dr. Felipe Jeferson de MEdeiros',
+    role: 'Pesquisador Colaborador',
+    image: '/team/pesquisador1.jpg',
+    bio: 'Meteorologista. Mestre e doutor em Ciências Climáticas pela UFRN. Possui experiência e interesse nas áreas de variabilidade climática, extremos climáticos e modelagem numérica.',
+    lattes: 'http://lattes.cnpq.br/2451224020373508',
+    email: 'felipetkd_@hotmail.com',
+  },
+  {
+    name: 'Dra. Maria Leidinice da Silva',
+    role: 'Pesquisador Colaborador',
+    image: '/team/pesquisador2.jpg',
+    bio: 'Possui graduação em Física, mestrado em Ciências Físicas Aplicadas e doutorado em Ciências do Clima pela Universidade Federal do Rio Grande do Norte (UFRN). Atualmente, atua como pós-doutoranda no ICTP. Sua pesquisa foca em modelagem regional, mudanças climáticas, eventos extremos, teleconexões e hidrologia, com experiência em divulgação científica e atividades de extensão.',
+    lattes: 'https://orcid.org/0000-0002-9495-3974',
+    email: 'mda_silv@ictp.it',
   },
   {
     name: 'Luiz Eduardo Nunes Cho-Luck',
@@ -41,6 +49,14 @@ const teamMembers = [
     bio: 'Professor Efetivo de Física no IFRN, Mestre em Ensino de Ciências Naturais e Matemática e Doutorando em Ciências Climáticas pela UFRN. Atualmente Atua em Pesquisas com Ênfase em Variabilidade Climática e Energias Renováveis, com Conhecimento em Análise e Processamento de Dados (PYTHON E R).',
     lattes: 'http://lattes.cnpq.br/9902527520234187',
     email: 'giovanninni@gmail.com',
+  },
+  {
+    name: 'Rayane Ferreira',
+    role: 'Graduanda em Meteorologia',
+    image: '/team/graduacao-01.jpg',
+    bio: 'Graduanda em Meteorologia pela UFRN. Atua na área de Geociências, com ênfase em Meteorologia, possui competências em Climatologia. Com conhecimentos em análise e processamento de dados, nas linguagens de programação Python e R',
+    lattes: 'http://lattes.cnpq.br/0117543397640729',
+    email: 'rayane.ferreira.130@ufrn.edu.br',
   },
 ];
 
