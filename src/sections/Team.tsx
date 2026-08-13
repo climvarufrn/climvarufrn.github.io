@@ -1,64 +1,88 @@
 import { useEffect, useRef, useState } from 'react';
-import { Mail, GraduationCap, Award, Linkedin } from 'lucide-react';
+import { Mail, GraduationCap, ArrowLeft } from 'lucide-react';
+import { teamMembers, categories } from '../data/team';
+import type { TeamMember } from '../data/team';
 
-const teamMembers = [
-  {
-    name: 'Dr. Cristiano Prestrelo de Oiveira',
-    role: 'Coordenador do Laboratório',
-    image: '/team/coordenador.jpg',
-    bio: 'Doutor em Meteorologia pela USP desde 2014 com experiência em variabilidade climática. Líder de diversos projetos de pesquisa em colaboração com instituições nacionais e internacionais.',
-    lattes: 'http://lattes.cnpq.br/2461244145338043',
-    email: 'cristiano.prestrelo@ufrn.br',
-  },
-  {
-    name: 'Dr. Felipe Jeferson de MEdeiros',
-    role: 'Pesquisador Colaborador',
-    image: '/team/pesquisador1.jpg',
-    bio: 'Meteorologista. Mestre e doutor em Ciências Climáticas pela UFRN. Possui experiência e interesse nas áreas de variabilidade climática, extremos climáticos e modelagem numérica.',
-    lattes: 'http://lattes.cnpq.br/2451224020373508',
-    email: 'felipetkd_@hotmail.com',
-  },
-  {
-    name: 'Dra. Maria Leidinice da Silva',
-    role: 'Pesquisador Colaborador',
-    image: '/team/pesquisador2.jpg',
-    bio: 'Possui graduação em Física, mestrado em Ciências Físicas Aplicadas e doutorado em Ciências do Clima pela Universidade Federal do Rio Grande do Norte (UFRN). Atualmente, atua como pós-doutoranda no ICTP. Sua pesquisa foca em modelagem regional, mudanças climáticas, eventos extremos, teleconexões e hidrologia, com experiência em divulgação científica e atividades de extensão.',
-    lattes: 'https://orcid.org/0000-0002-9495-3974',
-    email: 'mda_silv@ictp.it',
-  },
-  {
-    name: 'Luiz Eduardo Nunes Cho-Luck',
-    role: 'Doutorando em Ciências Climáticas',
-    image: '/team/doutorando-01.jpg',
-    bio: 'Meteorologista e Mestre em Ciências Climáticas pela UFRN. Possui experiência em previsão do tempo, modelagem climática, sensoriamento remoto, geoprocessamento e análise de dados.',
-    lattes: 'http://lattes.cnpq.br/2652719958867337',
-    email: 'choluck.eduardo@gmail.com',
-  },
-  {
-    name: 'Marina Siqueira',
-    role: 'Doutorando em Ciências Climáticas',
-    image: '/team/doutorando-03.jpg',
-    bio: 'Doutoranda e Mestra em Ciências Climáticas, bacharela em Gestão de Políticas Públicas e licenciada em Ciências Biológicas. Especialista em Gestão e Auditoria Ambiental e em Ciências da Natureza e suas Tecnologias. Possui experiência em sensoriamento remoto, geoprocessamento e análise de dados aplicados à sustentabilidade e impactos ambientais.',
-    lattes: 'http://lattes.cnpq.br/9651892429509278',
-    email: 'siqueira.maride@gmail.com',
-  },
-  {
-    name: 'Giovanninni Leite De Freitas Batista',
-    role: 'Doutorando em Ciências Climáticas',
-    image: '/team/doutorando-02.jpg',
-    bio: 'Professor Efetivo de Física no IFRN, Mestre em Ensino de Ciências Naturais e Matemática e Doutorando em Ciências Climáticas pela UFRN. Atualmente Atua em Pesquisas com Ênfase em Variabilidade Climática e Energias Renováveis, com Conhecimento em Análise e Processamento de Dados (PYTHON E R).',
-    lattes: 'http://lattes.cnpq.br/9902527520234187',
-    email: 'giovanninni@gmail.com',
-  },
-  {
-    name: 'Rayane Ferreira',
-    role: 'Graduanda em Meteorologia',
-    image: '/team/graduacao-01.jpg',
-    bio: 'Graduanda em Meteorologia pela UFRN. Atua na área de Geociências, com ênfase em Meteorologia, possui competências em Climatologia. Com conhecimentos em análise e processamento de dados, nas linguagens de programação Python e R',
-    lattes: 'http://lattes.cnpq.br/0117543397640729',
-    email: 'rayane.ferreira.130@ufrn.edu.br',
-  },
-];
+
+// ================================================================
+// Team.tsx — PÁGINA COMPLETA DE EQUIPE (/equipe)
+// Todos os membros organizados por categoria
+// Tema escuro, mantendo a identidade visual do CLIMVAR
+// ================================================================
+
+function MemberCard({ member, index, isVisible }: { member: TeamMember; index: number; isVisible: boolean }) {
+  const isCoord = member.category === 'coordenacao';
+
+  return (
+    <div
+      className={`group relative bg-gradient-to-br from-slate-800 to-slate-900 border rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl ${
+        isCoord
+          ? 'border-sky-500/50 hover:border-sky-400'
+          : 'border-slate-700 hover:border-sky-400/50'
+      } ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
+      {/* Highlight bar for coordinator */}
+      {isCoord && (
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 to-blue-500 z-10" />
+      )}
+
+      <div className="flex flex-col sm:flex-row">
+        {/* Image */}
+        <div className="relative sm:w-48 sm:h-auto h-64 flex-shrink-0 overflow-hidden">
+          <img
+            src={member.image}
+            alt={member.name}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent sm:bg-gradient-to-r" />
+
+          {/* Coordinator badge on image */}
+          {isCoord && (
+            <div className="absolute top-3 left-3">
+              <span className="inline-block bg-gradient-to-r from-sky-400 to-blue-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                Coordenador
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="p-6 flex flex-col justify-center flex-1">
+          <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+          <p className="text-sky-400 text-sm font-semibold uppercase tracking-wide mb-4">
+            {member.role}
+          </p>
+          <p className="text-slate-400 text-sm leading-relaxed mb-5">
+            {member.bio}
+          </p>
+
+          {/* Links */}
+          <div className="flex items-center gap-4">
+            <a
+              href={member.lattes}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-400 text-sm font-medium transition-colors"
+            >
+              <GraduationCap className="w-4 h-4" />
+              Currículo Lattes
+            </a>
+            <a
+              href={`mailto:${member.email}`}
+              className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-400 text-sm font-medium transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              E-mail
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Team() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -72,7 +96,7 @@ export function Team() {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
 
     if (sectionRef.current) {
@@ -83,98 +107,85 @@ export function Team() {
   }, []);
 
   return (
-    <section
-      id="team"
-      ref={sectionRef}
-      className="py-20 lg:py-32 bg-white"
-    >
-      <div className="section-padding">
-        {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
-            Nossa Equipe
+    <section ref={sectionRef} className="min-h-screen bg-slate-950 py-20 lg:py-28">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Back Link */}
+        <a
+          href="/"
+          className="inline-flex items-center gap-2 text-slate-400 hover:text-sky-400 text-sm font-medium mb-10 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          Voltar para o site
+        </a>
+
+        {/* Page Header */}
+        <div
+          className={`mb-16 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <span className="inline-block px-4 py-1.5 bg-sky-500/10 text-sky-400 rounded-full text-sm font-semibold mb-4 border border-sky-500/20">
+            Equipe CLIMVAR
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
-            Pesquisadores <span className="text-gradient">CLIMVAR</span>
-          </h2>
-          <p className="text-lg text-slate-600 leading-relaxed">
-            Nossa equipe é formada por pesquisadores dedicados e experientes, 
-            comprometidos com a excelência científica e a geração de conhecimento 
-            relevante para a sociedade.
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            Nossa <span className="text-sky-400">Equipe</span>
+          </h1>
+          <p className="text-lg text-slate-400 max-w-2xl leading-relaxed">
+            Conheça todos os pesquisadores, colaboradores e estudantes que compõem
+            o Laboratório de Variabilidade e Mudanças Climáticas.
           </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {teamMembers.map((member, index) => (
-            <div
-              key={index}
-              className={`group bg-slate-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 ${
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+        {/* Categories */}
+        {categories.map((category) => {
+          const members = teamMembers.filter((m) => m.category === category.key);
+          if (members.length === 0) return null;
+
+          return (
+            <div key={category.key} className="mb-16 last:mb-0">
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold text-white mb-1">
+                  {category.label}
+                </h2>
+                <p className="text-slate-500 text-sm">{category.description}</p>
+                <div className="mt-3 h-px bg-gradient-to-r from-sky-500/30 via-slate-700 to-transparent" />
+              </div>
+
+              <div className="grid gap-6">
+                {members.map((member, index) => (
+                  <MemberCard
+                    key={member.name}
+                    member={member}
+                    index={index}
+                    isVisible={isVisible}
+                  />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+
+        {/* Join CTA */}
+        <div
+          className={`mt-20 text-center transition-all duration-700 delay-300 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <div className="inline-block bg-gradient-to-r from-slate-800 to-slate-900 border border-slate-700 rounded-2xl p-8 max-w-xl">
+            <h3 className="text-xl font-bold text-white mb-2">
+              Junte-se à Nossa Equipe
+            </h3>
+            <p className="text-slate-400 text-sm mb-5 leading-relaxed">
+              Estamos sempre em busca de talentos apaixonados por climatologia
+              e mudanças climáticas. Entre em contato para saber mais sobre
+              oportunidades de pesquisa.
+            </p>
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-slate-900 font-semibold px-6 py-2.5 rounded-full transition-colors"
             >
-              {/* Image */}
-              <div className="relative h-72 overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                {/* Social Links Overlay */}
-                <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0">
-                  <a
-                    href={member.lattes}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 bg-white/90 hover:bg-white text-blue-700 px-3 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors"
-                  >
-                    <GraduationCap className="w-4 h-4" />
-                    Lattes
-                  </a>
-                  <a
-                    href={`mailto:${member.email}`}
-                    className="bg-white/90 hover:bg-white text-blue-700 p-2 rounded-lg transition-colors"
-                  >
-                    <Mail className="w-5 h-5" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-slate-900 mb-1">{member.name}</h3>
-                <p className="text-blue-600 text-sm font-medium mb-3">{member.role}</p>
-                <p className="text-slate-600 text-sm leading-relaxed">{member.bio}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Join Team CTA */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 max-w-2xl">
-            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
-              <Award className="w-8 h-8 text-white" />
-            </div>
-            <div className="text-left">
-              <h3 className="text-xl font-bold text-white mb-2">Junte-se à Nossa Equipe</h3>
-              <p className="text-blue-100 text-sm mb-4">
-                Estamos sempre em busca de talentos apaixonados por climatologia 
-                e mudanças climáticas. Confira nossas oportunidades.
-              </p>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-white font-medium hover:underline"
-              >
-                Entre em contato
-                <Linkedin className="w-4 h-4" />
-              </a>
-            </div>
+              Entre em contato
+            </a>
           </div>
         </div>
       </div>

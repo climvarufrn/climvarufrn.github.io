@@ -1,5 +1,5 @@
 node_modules/
 dist/
-src/
+backup
 *.log
 .DS_Store
