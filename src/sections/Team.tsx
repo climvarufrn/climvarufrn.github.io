@@ -1,53 +1,66 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowRight, GraduationCap, Mail } from 'lucide-react';
+import { Mail, GraduationCap, Award, Linkedin } from 'lucide-react';
 
-// ================================================================
-// TeamHome.tsx — SEÇÃO DE EQUIPE NA PÁGINA PRINCIPAL
-// Mostra apenas: Coordenador + 2 pesquisadores seniores
-// Botão "Conheça nossa equipe completa →"
-// ================================================================
-
-interface TeamMember {
-  name: string;
-  role: string;
-  image: string;
-  bio: string;
-  lattes: string;
-  email: string;
-  highlight?: boolean;
-}
-
-const featuredMembers: TeamMember[] = [
+const teamMembers = [
   {
-    name: 'Dr. Cristiano Prestrelo de Oliveira',
+    name: 'Dr. Cristiano Prestrelo de Oiveira',
     role: 'Coordenador do Laboratório',
     image: '/team/coordenador.jpg',
-    bio: 'Doutor em Meteorologia pela USP (2014). Líder de projetos de variabilidade climática em colaboração com instituições nacionais e internacionais.',
+    bio: 'Doutor em Meteorologia pela USP desde 2014 com experiência em variabilidade climática. Líder de diversos projetos de pesquisa em colaboração com instituições nacionais e internacionais.',
     lattes: 'http://lattes.cnpq.br/2461244145338043',
     email: 'cristiano.prestrelo@ufrn.br',
-    highlight: true,
+  },
+  {
+    name: 'Dr. Felipe Jeferson de MEdeiros',
+    role: 'Pesquisador Colaborador',
+    image: '/team/pesquisador1.jpg',
+    bio: 'Meteorologista. Mestre e doutor em Ciências Climáticas pela UFRN. Possui experiência e interesse nas áreas de variabilidade climática, extremos climáticos e modelagem numérica.',
+    lattes: 'http://lattes.cnpq.br/2451224020373508',
+    email: 'felipetkd_@hotmail.com',
   },
   {
     name: 'Dra. Maria Leidinice da Silva',
-    role: 'Pesquisadora Colaboradora',
+    role: 'Pesquisador Colaborador',
     image: '/team/pesquisador2.jpg',
-    bio: 'Doutora em Ciências do Clima pela UFRN. Pós-doutoranda no ICTP, com foco em modelagem regional, mudanças climáticas e eventos extremos.',
+    bio: 'Possui graduação em Física, mestrado em Ciências Físicas Aplicadas e doutorado em Ciências do Clima pela Universidade Federal do Rio Grande do Norte (UFRN). Atualmente, atua como pós-doutoranda no ICTP. Sua pesquisa foca em modelagem regional, mudanças climáticas, eventos extremos, teleconexões e hidrologia, com experiência em divulgação científica e atividades de extensão.',
     lattes: 'https://orcid.org/0000-0002-9495-3974',
     email: 'mda_silv@ictp.it',
   },
   {
-    name: 'Dr. Felipe Jeferson de Medeiros',
-    role: 'Pesquisador Colaborador',
-    image: '/team/pesquisador1.jpg',
-    bio: 'Mestre e Doutor em Ciências Climáticas pela UFRN. Especialista em variabilidade climática, extremos climáticos e modelagem numérica.',
-    lattes: 'http://lattes.cnpq.br/2451224020373508',
-    email: 'felipetkd_@hotmail.com',
+    name: 'Luiz Eduardo Nunes Cho-Luck',
+    role: 'Doutorando em Ciências Climáticas',
+    image: '/team/doutorando-01.jpg',
+    bio: 'Meteorologista e Mestre em Ciências Climáticas pela UFRN. Possui experiência em previsão do tempo, modelagem climática, sensoriamento remoto, geoprocessamento e análise de dados.',
+    lattes: 'http://lattes.cnpq.br/2652719958867337',
+    email: 'choluck.eduardo@gmail.com',
+  },
+  {
+    name: 'Marina Siqueira',
+    role: 'Doutorando em Ciências Climáticas',
+    image: '/team/doutorando-03.jpg',
+    bio: 'Doutoranda e Mestra em Ciências Climáticas, bacharela em Gestão de Políticas Públicas e licenciada em Ciências Biológicas. Especialista em Gestão e Auditoria Ambiental e em Ciências da Natureza e suas Tecnologias. Possui experiência em sensoriamento remoto, geoprocessamento e análise de dados aplicados à sustentabilidade e impactos ambientais.',
+    lattes: 'http://lattes.cnpq.br/9651892429509278',
+    email: 'siqueira.maride@gmail.com',
+  },
+  {
+    name: 'Giovanninni Leite De Freitas Batista',
+    role: 'Doutorando em Ciências Climáticas',
+    image: '/team/doutorando-02.jpg',
+    bio: 'Professor Efetivo de Física no IFRN, Mestre em Ensino de Ciências Naturais e Matemática e Doutorando em Ciências Climáticas pela UFRN. Atualmente Atua em Pesquisas com Ênfase em Variabilidade Climática e Energias Renováveis, com Conhecimento em Análise e Processamento de Dados (PYTHON E R).',
+    lattes: 'http://lattes.cnpq.br/9902527520234187',
+    email: 'giovanninni@gmail.com',
+  },
+  {
+    name: 'Rayane Ferreira',
+    role: 'Graduanda em Meteorologia',
+    image: '/team/graduacao-01.jpg',
+    bio: 'Graduanda em Meteorologia pela UFRN. Atua na área de Geociências, com ênfase em Meteorologia, possui competências em Climatologia. Com conhecimentos em análise e processamento de dados, nas linguagens de programação Python e R',
+    lattes: 'http://lattes.cnpq.br/0117543397640729',
+    email: 'rayane.ferreira.130@ufrn.edu.br',
   },
 ];
 
-const totalMembers = 7; // Atualize conforme sua equipe crescer
-
-export function TeamHome() {
+export function Team() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -73,125 +86,96 @@ export function TeamHome() {
     <section
       id="team"
       ref={sectionRef}
-      className="py-20 lg:py-28 bg-slate-900"
+      className="py-20 lg:py-32 bg-white"
     >
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="section-padding">
         {/* Section Header */}
-        <div
-          className={`text-center mb-14 transition-all duration-700 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          <span className="inline-block px-4 py-1.5 bg-sky-500/10 text-sky-400 rounded-full text-sm font-semibold mb-4 border border-sky-500/20">
+        <div className="max-w-3xl mx-auto text-center mb-16">
+          <span className="inline-block px-4 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
             Nossa Equipe
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Pesquisadores <span className="text-sky-400">CLIMVAR</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+            Pesquisadores <span className="text-gradient">CLIMVAR</span>
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            Conheça os pesquisadores que lideram as pesquisas do laboratório
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Nossa equipe é formada por pesquisadores dedicados e experientes, 
+            comprometidos com a excelência científica e a geração de conhecimento 
+            relevante para a sociedade.
           </p>
         </div>
 
-        {/* Featured Members Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
-          {featuredMembers.map((member, index) => (
+        {/* Team Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {teamMembers.map((member, index) => (
             <div
               key={index}
-              className={`group relative bg-gradient-to-br from-slate-800 to-slate-900 border rounded-2xl p-8 text-center transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl ${
-                member.highlight
-                  ? 'border-sky-500/60 hover:border-sky-400'
-                  : 'border-slate-700 hover:border-sky-400/60'
-              } ${
+              className={`group bg-slate-50 rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 ${
                 isVisible
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 translate-y-8'
               }`}
-              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              {/* Highlight bar for coordinator */}
-              {member.highlight && (
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-400 to-blue-500 rounded-t-2xl" />
-              )}
-
-              {/* Photo */}
-              <div className="relative mb-5">
+              {/* Image */}
+              <div className="relative h-72 overflow-hidden">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className={`w-28 h-28 rounded-full object-cover mx-auto border-3 transition-colors duration-300 ${
-                    member.highlight
-                      ? 'border-sky-500/50 group-hover:border-sky-400'
-                      : 'border-slate-600 group-hover:border-sky-400'
-                  }`}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Social Links Overlay */}
+                <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-4 group-hover:translate-y-0">
+                  <a
+                    href={member.lattes}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 bg-white/90 hover:bg-white text-blue-700 px-3 py-2 rounded-lg text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    Lattes
+                  </a>
+                  <a
+                    href={`mailto:${member.email}`}
+                    className="bg-white/90 hover:bg-white text-blue-700 p-2 rounded-lg transition-colors"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
 
-              {/* Coordinator Badge */}
-              {member.highlight && (
-                <span className="inline-block bg-gradient-to-r from-sky-400 to-blue-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3">
-                  Coordenador
-                </span>
-              )}
-
-              {/* Name */}
-              <h3 className="text-lg font-bold text-white mb-1 leading-tight">
-                {member.name}
-              </h3>
-
-              {/* Role */}
-              <p className="text-sky-400 text-sm font-medium uppercase tracking-wide mb-3">
-                {member.role}
-              </p>
-
-              {/* Bio */}
-              <p className="text-slate-400 text-sm leading-relaxed mb-5">
-                {member.bio}
-              </p>
-
-              {/* Social Links */}
-              <div className="flex items-center justify-center gap-3">
-                <a
-                  href={member.lattes}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-slate-400 hover:text-sky-400 text-sm transition-colors"
-                  title="Currículo Lattes"
-                >
-                  <GraduationCap className="w-4 h-4" />
-                  <span>Lattes</span>
-                </a>
-                <span className="text-slate-700">|</span>
-                <a
-                  href={`mailto:${member.email}`}
-                  className="inline-flex items-center gap-1.5 text-slate-400 hover:text-sky-400 text-sm transition-colors"
-                  title="Enviar e-mail"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span>E-mail</span>
-                </a>
+              {/* Content */}
+              <div className="p-6">
+                <h3 className="text-lg font-bold text-slate-900 mb-1">{member.name}</h3>
+                <p className="text-blue-600 text-sm font-medium mb-3">{member.role}</p>
+                <p className="text-slate-600 text-sm leading-relaxed">{member.bio}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* CTA Button */}
-        <div
-          className={`text-center transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          <a
-            href="/equipe"
-            className="inline-flex items-center gap-2.5 border-2 border-sky-400 text-sky-400 px-8 py-3.5 rounded-full font-semibold text-base transition-all duration-300 hover:bg-sky-400 hover:text-slate-900 hover:shadow-[0_0_24px_rgba(56,189,248,0.35)] group"
-          >
-            Conheça nossa equipe completa
-            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
-
-          <p className="text-slate-500 text-sm mt-4">
-            +{totalMembers - featuredMembers.length} pesquisadores, doutorandos e graduandos
-          </p>
+        {/* Join Team CTA */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center gap-4 bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 max-w-2xl">
+            <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
+              <Award className="w-8 h-8 text-white" />
+            </div>
+            <div className="text-left">
+              <h3 className="text-xl font-bold text-white mb-2">Junte-se à Nossa Equipe</h3>
+              <p className="text-blue-100 text-sm mb-4">
+                Estamos sempre em busca de talentos apaixonados por climatologia 
+                e mudanças climáticas. Confira nossas oportunidades.
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 text-white font-medium hover:underline"
+              >
+                Entre em contato
+                <Linkedin className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
