@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: .   # 🔥 AQUI ESTÁ A CHAVE
+        working-directory: .
 
     steps:
       - name: Checkout
@@ -40,6 +40,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create SPA fallback
+        run: cp dist/index.html dist/404.html
+
       - name: Debug dist 🔍
         run: |
           echo "Conteúdo do dist:"
@@ -51,7 +54,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist   # 🔥 IMPORTANTE
+          path: dist
 
       - name: Deploy
         uses: actions/deploy-pages@v4
