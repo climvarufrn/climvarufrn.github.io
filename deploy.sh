@@ -6,27 +6,20 @@
 # na mensagem (msg).                                                       ###
 ##############################################################################
 set -e
-
 echo "🚀 Iniciando deploy..."
 
-# Adiciona arquivos
-git add .
-
-nome=$1
-# Verifica se o argumento foi passado
-if [ -z "$nome" ]; then
-    echo "Erro: Nenhum nome foi fornecido."
-    echo "Uso: $0 <nome>"
-    exit 1
+if [[ -z $(git status --porcelain) ]]; then
+    echo "ℹ️ Nenhuma alteração encontrada."
+    echo "✅ Site já está atualizado."
+    exit 0
 fi
 
-# Mensagem automática com data
-msg="update: $nome $(date '+%Y-%m-%d %H:%M:%S')"
+git add .
 
-# Commit
+msg="${1:-update: $(date '+%Y-%m-%d %H:%M:%S')}"
+
 git commit -m "$msg"
 
-# Push
 git push
 
 echo "✅ Deploy concluído!"
