@@ -5,6 +5,7 @@
 # O script não está pronto. Pois é preciso ter uma adição de informação    ###
 # na mensagem (msg).                                                       ###
 ##############################################################################
+set -e
 
 echo "🚀 Iniciando deploy..."
 
